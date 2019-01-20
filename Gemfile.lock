@@ -1,0 +1,21 @@
+PATH
+  remote: .
+  specs:
+    fly (0.0.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    amq-protocol (2.3.0)
+    bunny (2.13.0)
+      amq-protocol (~> 2.3, >= 2.3.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bunny
+  fly!
+
+BUNDLED WITH
+   1.17.2
