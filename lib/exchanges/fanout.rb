@@ -9,6 +9,6 @@ class Fanout < Exchange
     end
 
     def exchange
-        channel.fanout("#{exchange_name}")
+        channel.fanout("#{exchange_name}", durable: true)
     end
 end

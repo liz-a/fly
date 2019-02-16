@@ -10,7 +10,7 @@
             @exchange_name = exchange_name
         end
 
-        def bind(queue_name, routing_key, durable = false)
+        def bind(queue_name, routing_key, durable = true)
             @queue = channel.queue(queue_name, durable: durable)
             queue.bind(exchange, routing_key: routing_key)
         end
@@ -19,10 +19,11 @@
             Bunny.new
         end
 
-        def notify(payload, routing_key)
+        def notify(payload, routing_key, default_routing_key = 'default')
             @connection, @payload, @routing_key = new_connection, payload, routing_key
             connection.start
             @channel = connection.create_channel
+            exchange.publish(payload_as_json, routing_key: default_routing_key)
             exchange.publish(payload_as_json, routing_key: routing_key)
             connection.close
         end

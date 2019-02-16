@@ -11,7 +11,7 @@ module Fly
         @exchange = @exchange_type.new(name)
     end
 
-    def self.bind_queue(queue_name: 'default', routing_key: 'default', durable: false)
+    def self.bind_queue(queue_name: 'default', routing_key: 'default', durable: true)
         exchange.bind(queue_name, routing_key, durable)
     end
 
@@ -24,6 +24,6 @@ module Fly
     end
 
     def self.exchange
-        @exchange = @exchange || Default.new 
+        @exchange = @exchange || Default.new
     end
 end
